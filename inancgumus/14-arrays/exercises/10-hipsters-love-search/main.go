@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"strings"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Hipster's Love Bookstore Search Engine
 //
@@ -59,4 +65,32 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	// book list as an array
+	books := [...]string{
+		"Kafka's Revenge",
+		"Stay Golden",
+		"Everythingship",
+		"Kafka's Revenge 2nd Edition",
+	}
+	// takes input
+	reader := os.Args[1:]
+
+	var isFound bool // in order to check if it is found in the current cell
+	isAny := false   // in order to keep track of if it is found in any cell
+	fmt.Printf("\tSearch results:\n")
+
+	//
+	for i := range books {
+		// convert to lower case to check if it contains so that search become incase-sensitive
+		isFound = strings.Contains(strings.ToLower(books[i]), strings.ToLower(reader[0]))
+		if isFound == true {
+			fmt.Printf("\t + %s \n", books[i])
+			isAny = true
+		}
+	}
+	// if nothin is found
+	if !isAny {
+		fmt.Printf("\tWe don't have the book: %q", reader[0])
+	}
+
 }

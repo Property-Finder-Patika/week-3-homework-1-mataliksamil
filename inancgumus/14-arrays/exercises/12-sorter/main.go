@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Number Sorter
 //
@@ -46,5 +52,34 @@ package main
 //     [0 0 1 4 5]
 // ---------------------------------------------------------
 
+// swap function takes the cells will be swapped as pointers so does not need to return
+func swap(i *int, j *int) {
+	tempVal := *i // in order not to lose the data
+	*i = *j
+	*j = tempVal
+
+}
+
 func main() {
+	reader := os.Args[1:]
+	// an array from the input numbers
+	var nums []int
+	for _, i := range reader {
+		num, err := strconv.Atoi(i)
+		if err != nil { // in orfder to handle with not number input case
+			num = 0
+		}
+		nums = append(nums, num) // appends slice converted inputs
+	}
+
+	for i := range nums {
+		// -1 for since we are on a cel already -i for the cells before the current cell
+		for j := 0; j < len(nums)-1-i; j++ {
+			if nums[j] > nums[j+1] {
+				swap(&nums[j], &nums[j+1])
+			}
+		}
+	}
+	fmt.Printf("%v", nums)
+
 }

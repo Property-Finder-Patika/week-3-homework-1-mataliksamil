@@ -8,6 +8,11 @@
 
 package main
 
+import (
+	"fmt"
+	"strings"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Assign the Arrays
 //
@@ -42,4 +47,26 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	// books array declaration and assignment
+	books := [...]string{
+		"Kafka's Revenge",
+		"Stay Golden",
+		"Everythingship",
+	}
+	// copies of books
+	upper, lower := books, books
+	fmt.Println(books, upper, lower)
+
+	// Make it upper case every string characters in cells
+	for i, book := range upper {
+		upper[i] = strings.ToUpper(book)
+	}
+	// Make it lower case every string characters in cells
+	for i, book := range lower {
+		lower[i] = strings.ToLower(book)
+	}
+
+	fmt.Printf(" Books  : %#v\n", books)
+	fmt.Printf(" Uppers : %#v\n", upper)
+	fmt.Printf(" Lower  : %#v\n", lower)
 }

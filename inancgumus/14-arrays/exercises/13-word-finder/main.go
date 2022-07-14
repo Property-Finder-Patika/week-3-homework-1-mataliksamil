@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"strings"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Word Finder
 //
@@ -54,4 +60,53 @@ package main
 const corpus = "lazy cat jumps again and again and again since the beginning this was very important"
 
 func main() {
+
+	reader := os.Args[1:]
+	splitCorpus := strings.Split(corpus, " ") // split the words to an array
+	var isFound bool                          // in order to check if it is found in the current cell
+	isAny := false                            // in order to keep track of if it is found in any cell
+
+	/* 	filterList := [...]string{
+	   		"and",
+	   		"or",
+	   		"was",
+	   		"the",
+	   		"since",
+	   		"very",
+	   	}
+
+	   	// THIS IS SAME QUERY WTIH SEARCHING BUT SIMPLIFIED FOR FILTERING
+	   	// I KNOW IT IS BRUTE FORCE PLEASE DONT HOLD YOUR RECCOMENDATIONS
+	   	for _, seek := range filterList {
+	   		isAny = false
+	   		for i, word := range splitCorpus {
+	   			// convert to lower case to check if it contains so that search become incase-sensitive
+	   			isFound = strings.Contains(word, seek)
+	   			if isFound == true {
+	   				// THE GREAT FILTERING, BY ABSOLUTE BRUTE FORCE
+	   				splitCorpus[i] = ""
+	   			}
+	   		}
+	   	}
+	*/
+
+	for _, seek := range reader {
+		isAny = false
+		for i, word := range splitCorpus {
+			// convert to lower case to check if it contains so that search become incase-sensitive
+			isFound = strings.Contains(strings.ToLower(word), strings.ToLower(seek))
+			if isFound == true {
+				isAny = true
+				// THE GREAT FILTERING, BY ABSOLUTE BRUTE FORCE
+				if (word == "and") || (word == "was") || (word == "or") || (word == "the") || (word == "since") || (word == "very") {
+					continue
+				}
+				fmt.Printf("\t #%d %q \n", i+1, word)
+			}
+		}
+		if !isAny { // if the word is not in the slice
+			fmt.Printf("\t The word : %q could not be found \n", seek)
+		}
+	}
+
 }

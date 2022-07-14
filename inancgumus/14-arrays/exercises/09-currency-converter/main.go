@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Currency Converter
 //
@@ -46,4 +52,30 @@ package main
 // ---------------------------------------------------------
 
 func main() {
+	const (
+		usdEur = iota
+		usdGBP
+		usdJPY
+		usdTRY
+	)
+	// ratios array
+	ratios := [...]float64{
+		usdEur: 0.88,
+		usdGBP: 0.78,
+		usdJPY: 113.02,
+		usdTRY: 17.49,
+	}
+	// takes input as string array
+	usdAmount := os.Args[1:]
+	// conver string array input to float64
+	usdAmounFloat, err := strconv.ParseFloat(usdAmount[0], 64)
+	if err != nil {
+		fmt.Printf("ERROR : %s \n", err)
+	}
+	// print exchange rates
+	fmt.Printf("%.2f USD is %.2f \tEUR\n", usdAmounFloat, usdAmounFloat*ratios[usdEur])
+	fmt.Printf("%.2f USD is %.2f \tGBP\n", usdAmounFloat, usdAmounFloat*ratios[usdGBP])
+	fmt.Printf("%.2f USD is %.2f \tJPY\n", usdAmounFloat, usdAmounFloat*ratios[usdJPY])
+	fmt.Printf("%.2f USD is %.2f \tTRY\n", usdAmounFloat, usdAmounFloat*ratios[usdTRY])
+
 }
