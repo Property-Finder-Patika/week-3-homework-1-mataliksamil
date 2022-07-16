@@ -22,7 +22,7 @@ func main() {
 
 	// #5: let's break the connection
 	// #6: comment-out
-	// var newGrades []float64
+	//var newGrades []float64
 	// newGrades = append(newGrades, grades...)
 
 	// #6: shortcut: []float64(nil) is a nil float64 slice

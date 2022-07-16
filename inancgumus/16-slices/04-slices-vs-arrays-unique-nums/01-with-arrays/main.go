@@ -22,8 +22,10 @@ func main() {
 
 	// It's harder to make a program dynamic using arrays
 	// max, _ := strconv.Atoi(os.Args[1])
-	// var uniques [10]int
+	// not allowed since arrays are static
+	// var uniques [10]int //
 
+	// is this BL BX kind of thing ??
 loop:
 	for found := 0; found < max; {
 		n := rand.Intn(max) + 1

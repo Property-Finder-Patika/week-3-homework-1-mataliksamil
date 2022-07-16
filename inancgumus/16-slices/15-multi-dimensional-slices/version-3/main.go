@@ -37,10 +37,9 @@ func fetch() [][]int {
 	lines := strings.Split(content, "\n")
 
 	spendings := make([][]int, len(lines))
-
+	fmt.Printf("%#v", lines)
 	for i, line := range lines {
 		fields := strings.Fields(line)
-
 		spendings[i] = make([]int, len(fields))
 
 		for j, field := range fields {

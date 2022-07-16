@@ -31,7 +31,6 @@ func main() {
 	// s.Show("12:14", items[12:14]) // error
 
 	l := len(items)
-
 	const pageSize = 4
 
 	for from := 0; from < l; from += pageSize {
@@ -39,11 +38,7 @@ func main() {
 		if to > l {
 			to = l
 		}
-
-		// fmt.Printf("%d:%d\n", from, to)
-
 		currentPage := items[from:to]
-
 		head := fmt.Sprintf("Page #%d", (from/pageSize)+1)
 		s.Show(head, currentPage)
 	}
