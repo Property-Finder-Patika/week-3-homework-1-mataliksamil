@@ -47,7 +47,7 @@ func main() {
 	fmt.Println(strNum)
 	var first string
 
-	for a := 0; a < 10; a++ {
+	for a := 0; a < 10; a++ { // You have 10 turns for this game
 
 		fmt.Printf("Please insert your 4 digit guess :")
 		fmt.Scanln(&first) // first[0] - gives as ASCII decimal system 0,1,2.. - 48,49,50...
@@ -64,6 +64,7 @@ func main() {
 			}
 		}
 
+		// different print states for different cases
 		if correct == 0 {
 			if misplaced != 0 {
 				fmt.Println(misplaced)
@@ -78,7 +79,7 @@ func main() {
 			}
 
 		}
-		if correct == 4 {
+		if correct == 4 { // all correct
 			fmt.Println(" CONGRATZZ !!!")
 			break
 		}
